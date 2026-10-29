@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123c72">
+  <title>GS SIGMA — Site temporairement indisponible</title>
+  <style>
+    :root{color-scheme:light;--navy:#123c72;--blue:#1769aa;--gold:#f2b544;--ink:#17263c;--muted:#5f6f83;--line:#dce5ef}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;background:linear-gradient(145deg,#eef4fb,#f9fbfe 60%,#fff7e6);font-family:Arial,Helvetica,sans-serif;color:var(--ink)}
+    main{width:min(680px,100%);background:#fff;border:1px solid var(--line);border-radius:22px;padding:clamp(26px,6vw,52px);box-shadow:0 22px 70px #123c7218;text-align:center}
+    .mark{width:76px;height:76px;margin:0 auto 22px;border-radius:22px;background:var(--navy);display:grid;place-items:center;color:#fff;font-weight:900;font-size:25px;letter-spacing:-1px;border-bottom:5px solid var(--gold)}
+    .eyebrow{display:inline-block;border-radius:999px;background:#fff2d5;color:#805400;padding:8px 13px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+    h1{font-size:clamp(27px,5vw,40px);line-height:1.12;margin:20px 0 14px;color:var(--navy)}p{font-size:16px;line-height:1.7;color:var(--muted);margin:0 auto 15px;max-width:530px}
+    .code{font-size:13px;color:#738196;margin-top:22px}.actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px}a{display:inline-block;text-decoration:none;font-weight:700;padding:12px 18px;border-radius:10px;background:var(--navy);color:#fff}a.secondary{background:#fff;color:var(--navy);border:1px solid var(--line)}
+    footer{margin-top:28px;font-size:12px;color:#8794a5}
+  </style>
+</head>
+<body>
+  <main role="main">
+    <div class="mark" aria-label="GS SIGMA">SIGMA</div>
+    <span class="eyebrow">Information aux utilisateurs</span>
+    <h1 id="heading">Le site est temporairement indisponible</h1>
+    <p id="message">L’équipe GS SIGMA effectue actuellement une opération de maintenance afin d’améliorer le service. Merci de réessayer dans quelques instants.</p>
+    <p>Vos données ne sont pas supprimées par l’affichage de cette page. Évite de partager tes identifiants et réessaie plus tard.</p>
+    <div class="actions"><a href="/" id="retry">Réessayer</a><a class="secondary" href="/" onclick="history.back();return false;">Revenir à la page précédente</a></div>
+    <div class="code" id="status">Service temporairement indisponible · HTTP 503</div>
+    <footer>GS SIGMA · Aides aux UE et guide utilisateur</footer>
+  </main>
+  <script>
+    // La page peut aussi servir de page 404 lorsque l'URL demandée n'existe pas.
+    if (new URLSearchParams(location.search).get('type') === '404') {
+      document.title = 'GS SIGMA — Page introuvable';
+      document.getElementById('heading').textContent = 'Cette page est introuvable';
+      document.getElementById('message').textContent = 'Le lien utilisé est peut-être incorrect ou la page a été déplacée. Retourne à l’accueil ou vérifie l’adresse.';
+      document.getElementById('status').textContent = 'Page introuvable · HTTP 404';
+    }
+  </script>
+</body>
+</html>

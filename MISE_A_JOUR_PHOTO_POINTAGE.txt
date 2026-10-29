@@ -1,0 +1,1 @@
+Mise à jour ultérieure : l’option de prise de photo au pointage QR a été retirée à la demande de l’utilisateur dans la version GS_SIGMA_SECURITE_SESSION_30MIN_MAJ.zip. Ce fichier décrit une version antérieure et ne correspond plus à la version actuelle.

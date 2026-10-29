@@ -1,0 +1,31 @@
+CORRECTIF GS SIGMA — FICHES, CLASSES ET QR CODE
+
+Modifications apportées à index.html :
+- Correction de l’enregistrement des fiches : les champs de classe et de fonction sont maintenant correctement définis avant la sauvegarde.
+- Liste déroulante des classes : Première année CESI, Première année UQTR, Première année ESA et Deuxième année CESI.
+- Ajout du sexe pour les étudiants et les enseignants, avec validation avant l’enregistrement.
+- Ajout du contact téléphonique et de l’adresse e-mail de la personne.
+- Ajout du contact et de l’adresse e-mail du parent/tuteur pour les étudiants.
+- Champ « Autre classe ou service (facultatif) » affiché pour les autres utilisateurs/personnels.
+- Conservation des champs de données existants et des fiches anciennes ; les nouvelles informations sont enregistrées dans les objets des personnes.
+- Après l’enregistrement, génération et affichage du QR code de la fiche, avec son identifiant, et accès à la rubrique « QR individuels ».
+- Suppression de l’ancien modal QR imbriqué qui perturbait la structure du formulaire.
+- Amélioration de la typographie du formulaire et de la page IA et analyse.
+
+Vérifications réalisées :
+- Vérification syntaxique Node.js de tous les scripts JavaScript intégrés : aucune erreur de syntaxe détectée.
+- Vérification syntaxique de server.js et du format JSON de package.json.
+
+À noter : le test en production doit être effectué après déploiement sur Render/GitHub. Garder la base PostgreSQL et la variable DATABASE_URL existantes ; ne pas recréer ni supprimer la base.
+
+MISE À JOUR COMPTES UTILISATEURS ET CLASSES — 27/10/2026
+- La sélection de classe est explicitement affichée et obligatoire pour une nouvelle fiche Étudiant.
+- Les quatre classes officielles sont proposées dans une liste déroulante.
+- Le champ « Autre classe ou service » est réservé à la catégorie « Autre utilisateur » afin d'éviter qu'une valeur personnalisée remplace la classe choisie pour un étudiant.
+- Le titre « IA — Analyse & Observatoire des résultats » est forcé en blanc sur le bandeau sombre pour améliorer le contraste.
+- Ajout dans « Comptes utilisateurs » d'un import Excel/CSV, d'un modèle Excel et d'un export des comptes.
+- Formats pris en charge par le lecteur Excel : XLS, XLSX, XLSM, XLSB, ODS et CSV (selon la prise en charge de la bibliothèque SheetJS chargée).
+- L'import met à jour un compte existant à partir de l'identifiant, ou crée un nouveau compte. Les nouveaux comptes sans mot de passe reçoivent un mot de passe temporaire exporté dans un fichier séparé.
+- Les comptes importés sont également rapprochés de la liste des personnes pour conserver les informations de présence et QR.
+- L'export général n'inclut pas les mots de passe existants.
+- Après déploiement, tester les ajouts, imports, exports et la synchronisation sur l'instance Render avec la base PostgreSQL actuelle.

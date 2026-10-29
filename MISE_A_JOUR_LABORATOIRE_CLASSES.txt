@@ -1,0 +1,10 @@
+MISE À JOUR GS SIGMA — LABORATOIRE ET CLASSES MULTIPLES
+
+- Ajout de la gestion des laboratoires, équipements/produits, stocks, mouvements, QR/étiquettes, réservations/TP et export CSV.
+- Les données de laboratoire sont enregistrées dans la base de données applicative existante via saveDB.
+- L’accès est réservé à l’administrateur ou aux comptes autorisés dans Comptes utilisateurs.
+- Les formulaires Étudiant et Enseignant proposent désormais la même sélection multiple, compacte et alignée, des quatre classes : Première année CESI, Première année UQTR, Première année ESA, Deuxième année CESI.
+- Au moins une classe doit être cochée pour enregistrer un étudiant ou un enseignant.
+- Préserver la base PostgreSQL et DATABASE_URL lors du déploiement.
+
+Après déploiement, tester la création d’une fiche étudiant, d’une fiche enseignant, l’affichage du QR, la création d’un laboratoire, un mouvement de stock et la synchronisation sur un second appareil.

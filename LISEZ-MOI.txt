@@ -1,0 +1,44 @@
+GS SIGMA — Aides aux UE et guide utilisateur
+
+Le déploiement est prévu pour GitHub + Render + PostgreSQL. Aucun déploiement Google Apps Script n’est nécessaire.
+
+Fichiers essentiels
+- index.html : interface, aide intégrée et boutons d’ouverture/téléchargement du guide.
+- Guide_utilisateur_GS_SIGMA.pdf : guide PDF à conserver à la racine du site.
+- server.js : serveur web et API PostgreSQL.
+- render.yaml : configuration Render.
+
+Pour tester l’aide : ouvrez le site, cliquez sur « Aide et guide utilisateur », puis testez « Ouvrir le guide PDF » et « Télécharger le guide PDF ». L’aide peut être fermée avec la croix ou la touche Échap.
+
+Si le PDF ne s’ouvre pas en ligne, vérifiez que son nom est exactement Guide_utilisateur_GS_SIGMA.pdf et qu’il est à la racine du dépôt. Le serveur sert le PDF avec le type application/pdf.
+
+Déploiement : téléversez tous les fichiers du ZIP à la racine du dépôt GitHub, reliez le dépôt à Render en Blueprint, puis attendez le démarrage du service et de PostgreSQL. Testez /api/health.
+
+Sécurité : ne saisissez pas de mots de passe réels tant que l’authentification et les autorisations de l’API ne sont pas sécurisées côté serveur.
+
+NOUVELLE VERSION — NOTES, RELEVÉS ET CONFIRMATION E-MAIL
+- L’adresse e-mail est obligatoire pour se connecter : un code à 6 chiffres est envoyé à chaque tentative de connexion, valable 10 minutes.
+- Les comptes existants doivent recevoir une adresse e-mail dans Comptes utilisateurs > Modifier.
+- Pour activer l’envoi des codes sur Render, configurer SMTP_HOST, SMTP_PORT, SMTP_SECURE, SMTP_USER, SMTP_PASS et SMTP_FROM. Voir README_DEPLOIEMENT.md.
+- La rubrique Notes et relevés permet la saisie des notes par les enseignants autorisés, l’import Excel/CSV, l’export Excel/CSV et l’impression des relevés semestriels/annuels en PDF.
+- La rubrique Droits et fonctionnalités est réservée à l’administrateur principal.
+- Les étudiants et utilisateurs simples ne peuvent pas modifier les notes et ne voient que les résultats associés à leur fiche étudiant.
+
+
+CONFIGURATION E-MAIL : le serveur utilise Gmail SMTP par défaut. Dans Render > Environment, renseigne SMTP_USER, SMTP_PASS (mot de passe d’application Google), SMTP_FROM, SMTP_HOST=smtp.gmail.com, SMTP_PORT=587 et SMTP_SECURE=false, puis redéploie. Voir README_DEPLOIEMENT.md. Le premier administrateur peut se connecter sans adresse e-mail ; les autres comptes en ont besoin pour recevoir le code.
+
+MISE À JOUR — CLASSES/SERVICES ET CARTES SIGMA
+- L'ajout et la modification des fiches permettent d'attribuer une classe ou un service prédéfini ou personnalisé aux étudiants, enseignants et autres utilisateurs.
+- Les comptes utilisateur disposent également d'un champ Classe / service, visible dans la liste des comptes.
+- La gestion complète des personnes permet d'imprimer une carte d'identification SIGMA avec catégorie, classe/service, identifiant et QR code.
+- Dans Paramètres, l'administrateur principal peut activer ou désactiver la catégorie « Autre utilisateur ».
+- La génération des QR codes continue à utiliser l'identifiant unique de la fiche.
+
+
+MISE A JOUR OTP TOTP SANS EMAIL (version 1.1.0)
+- Connexion par identifiant et mot de passe.
+- Première connexion utilisateur : QR code ou clé secrète à ajouter dans une application TOTP, puis validation par code à 6 chiffres.
+- Connexions suivantes : saisie du code TOTP à 6 chiffres.
+- Aucun envoi ni confirmation par e-mail.
+- Les secrets OTP sont stockés dans PostgreSQL côté serveur.
+- Déployer sur Render et vérifier /api/health => database: connected.

@@ -1,0 +1,20 @@
+GROUPE SCIENTIFIQUE SIGMA — CORRECTIF DE STABILITÉ
+Date : 27 octobre 2026
+
+Problème identifié
+Le fichier index.html contenait un bloc d’extension HTML/JavaScript mal formé. Des fragments de pages imprimables comportaient des balises </script> à l’intérieur de scripts intégrés. Le navigateur interrompait alors l’analyse du JavaScript, ce qui empêchait plusieurs fonctionnalités de s’initialiser.
+
+Correction appliquée
+- Neutralisation du bloc d’extension mal formé qui interrompait l’exécution des scripts.
+- Conservation des fichiers de déploiement existants : server.js, package.json, render.yaml, 404.html, logo et guide de déploiement.
+- Aucun changement apporté au schéma PostgreSQL, à DATABASE_URL ni à la route /api/shared-db.
+- Vérification syntaxique de tous les scripts intégrés restants et de server.js avec Node.js.
+
+Important
+Cette version est une version de stabilisation. Le bloc d’extension défectueux qui contenait notamment des modules avancés de laboratoire et de notes a été neutralisé pour rétablir le fonctionnement des modules de base. Ces extensions doivent être réintégrées proprement dans une étape séparée avant d’être considérées comme disponibles.
+
+Déploiement
+1. Conserver les variables d’environnement Render actuelles, notamment DATABASE_URL.
+2. Remplacer les fichiers de l’application par ceux de cette archive.
+3. Redéployer sur Render.
+4. Vérifier /api/health et /api/shared-db, puis tester la connexion, les fiches, les présences et la synchronisation sur deux appareils.

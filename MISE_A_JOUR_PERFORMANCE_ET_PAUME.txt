@@ -1,0 +1,26 @@
+MISE À JOUR GS SIGMA — FLUIDITÉ ET LECTEUR PALMAIRE
+
+Améliorations incluses
+- Les bibliothèques QR, Excel et PDF sont chargées avec defer pour éviter de bloquer l’affichage initial.
+- Ajout dans Paramètres d’un panneau de configuration du lecteur palmaire, accessible à l’administration principale.
+- Ajout dans Scanner d’un panneau « Scanner la paume de la main ».
+- L’administrateur peut gérer les associations de paumes pour les comptes et les personnes (étudiants, enseignants et utilisateurs simples).
+- Aucune image de main ni donnée biométrique brute n’est enregistrée dans la base de l’application. Seule une référence retournée par le SDK est conservée.
+- Les droits et fonctionnalités existants de Général, Gestion et Administration sont conservés.
+
+IMPORTANT — LECTEUR PALMAIRE RÉEL
+Un navigateur ne peut pas transformer une caméra ordinaire en lecteur palmaire fiable. Pour l’enrôlement et l’identification effectifs, il faut un lecteur compatible et son SDK officiel. L’application recherche un adaptateur JavaScript global nommé SigmaPalmScanner, avec les méthodes :
+  testConnection({ endpoint }) -> { ok: true/false }
+  enroll({ personKey, endpoint, deviceName }) -> { templateId: "référence non biométrique" }
+  scan({ mode, personKey, endpoint }) -> { templateId: "référence non biométrique" }
+  revoke({ templateId })
+Ces méthodes doivent appeler le SDK/service local officiel et gérer les modèles biométriques de manière sécurisée côté matériel/service. Ne retournez pas le modèle biométrique brut dans le navigateur. Sans adaptateur SDK, les boutons affichent explicitement que le lecteur n’est pas disponible et n’inventent aucun résultat.
+
+À faire pour un déploiement réel
+1. Identifier la marque et le modèle exact du lecteur palmaire.
+2. Installer le SDK officiel compatible avec le système cible et HTTPS/local service.
+3. Faire développer ou fournir l’adaptateur SigmaPalmScanner par le fabricant/intégrateur.
+4. Tester l’enrôlement, la révocation, les faux rejets et les fausses acceptations.
+5. Informer les personnes et recueillir les consentements requis avant tout traitement biométrique. Prévoir une alternative non biométrique.
+
+La compatibilité universelle avec tous les systèmes/appareils ne peut pas être garantie par le seul fichier HTML : elle dépend du navigateur, du réseau, des autorisations et du matériel connecté.

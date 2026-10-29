@@ -1,0 +1,14 @@
+Mise à jour GS SIGMA — sécurité de session
+
+- Suppression de l’option et du module de prise de photo pendant le pointage QR. Les données historiques déjà enregistrées ne sont pas effacées.
+- Déconnexion automatique après 30 minutes d’inactivité par défaut.
+- L’administrateur principal peut modifier ce délai dans Paramètres > Interface de connexion et sécurité. Choix disponibles : 5, 10, 15, 20, 30, 45 ou 60 minutes, ou désactivation.
+- Aucun changement de schéma de base de données ni de DATABASE_URL.
+- Après mise à jour sur GitHub/Render, vérifier la connexion et le délai de session dans l’interface.
+
+
+Mise à jour de connexion — OTP facultatif sans confirmation par e-mail
+- Connexion possible directement avec identifiant et mot de passe.
+- Champ OTP à 6 chiffres visible mais facultatif.
+- Si un OTP est déjà configuré pour le compte, le code saisi est vérifié côté serveur.
+- Aucun e-mail de confirmation ni configuration SMTP n'est requis.

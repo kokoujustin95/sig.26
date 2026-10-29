@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: gs-sigma-aides-ue
+    runtime: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: gs-sigma-postgres
+          property: connectionString
+databases:
+  - name: gs-sigma-postgres
+    plan: basic-256mb
